@@ -24,5 +24,9 @@ namespace Case.Itau.Data.Dtos
 
         [Column(Name = "PATRIMONIO"), Nullable]
         public decimal Patrimonio { get; set; }
+
+        //[Association(ThisKey = "Codigo", OtherKey = "Codigo", CanBeNull = false)]
+        //public TipoFundoDto TipoFundo { get; set; }
+
     }
 }

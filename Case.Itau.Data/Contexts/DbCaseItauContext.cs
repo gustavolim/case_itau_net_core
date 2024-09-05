@@ -1,4 +1,5 @@
 ﻿using Case.Itau.Data.Dtos;
+using Case.Itau.Data.Mappings;
 using LinqToDB;
 using LinqToDB.Data;
 
@@ -11,8 +12,8 @@ namespace Case.Itau.Data.Contexts
         {
         }
 
-        public ITable<TipoFundoDto> TipoFundos => this.GetTable<TipoFundoDto>();
-        public ITable<FundoDto> Fundos => this.GetTable<FundoDto>();
+        public ITable<TipoFundosDtoMap> TipoFundos => this.GetTable<TipoFundosDtoMap>();
+        public ITable<FundosDtoMap> Fundos => this.GetTable<FundosDtoMap>();
 
     }
 }
