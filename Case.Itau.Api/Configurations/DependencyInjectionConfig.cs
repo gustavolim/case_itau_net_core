@@ -1,4 +1,6 @@
-﻿namespace Case.Itau.Api.Configurations
+﻿using Case.Itau.Data.Validations;
+
+namespace Case.Itau.Api.Configurations
 {
     public static class DependencyInjectionConfig
     {
@@ -15,7 +17,7 @@
             #endregion
 
             #region {Data}
-
+            services.AddScoped<IRepositoryValidation, RepositoryValidation>();
             #endregion
         }
     }

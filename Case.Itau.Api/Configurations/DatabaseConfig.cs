@@ -8,7 +8,7 @@ namespace Case.Itau.Api.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-           // services.AddScoped(_ => new DbCaseItauContext(configuration.GetConnectionString("dbCaseItau")));
+            services.AddScoped(_ => new DbCaseItauContext("Data Source=dbCaseItau.s3db"));
         }
     }
 }
