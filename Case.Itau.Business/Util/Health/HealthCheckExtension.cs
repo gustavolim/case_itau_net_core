@@ -1,5 +1,6 @@
-﻿namespace Case.Itau.Api.Util.Health
+﻿namespace Case.Itau.Business.Util.Health
 {
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using System.Reflection;

@@ -27,6 +27,19 @@ namespace Case.Itau.Api.Configurations
                     }
                 });
 
+                s.SwaggerDoc("v1.Fundos", new OpenApiInfo
+                {
+                    Title = "API Case Itau",
+                    Version = "v1",
+                    Description = "Description",
+                    Contact = new OpenApiContact
+                    {
+                        Email = "delimaalves.gustavo@gmail.com",
+                        Name = "Gustavo de Lima Alves"
+                    }
+                });
+
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 s.IncludeXmlComments(xmlPath);
@@ -47,6 +60,7 @@ namespace Case.Itau.Api.Configurations
             {
                 c.RoutePrefix = "doc";
                 c.SwaggerEndpoint("./v1.WeatherForecast/swagger.json", "WeatherForecast");
+                c.SwaggerEndpoint("./v1.Fundos/swagger.json", "Fundos");
             });
         }
     }

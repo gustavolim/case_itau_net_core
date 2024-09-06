@@ -5,7 +5,7 @@ namespace Case.Itau.Data.Mappings
 {
     public class FundosDtoMap : FundoDto
     {
-        [Association(ThisKey = nameof(Codigo), OtherKey = nameof(TipoFundosDtoMap.Codigo), CanBeNull = true)]
+        [Association(ThisKey = nameof(CodigoTipo), OtherKey = nameof(TipoFundosDtoMap.Codigo), CanBeNull = true)]
         public TipoFundosDtoMap TipoFundo { get; set; }
 
     }

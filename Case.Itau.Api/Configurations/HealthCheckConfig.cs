@@ -1,4 +1,4 @@
-﻿using Case.Itau.Api.Util.Health;
+﻿using Case.Itau.Business.Util.Health;
 using Case.Itau.Data.Validations;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;

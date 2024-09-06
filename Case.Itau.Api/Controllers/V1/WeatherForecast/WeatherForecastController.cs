@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Case.Itau.Api.Controllers.V1.WeatherForecast
 {
+    [ApiExplorerSettings(GroupName = "v1.WeatherForecast")]
+    [Route("api/v1/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

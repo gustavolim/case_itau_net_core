@@ -1,4 +1,6 @@
-﻿using Case.Itau.Data.Validations;
+﻿using Case.Itau.Business.Services.V1.Fundos;
+using Case.Itau.Data.Repositories.Fundos;
+using Case.Itau.Data.Validations;
 
 namespace Case.Itau.Api.Configurations
 {
@@ -13,11 +15,12 @@ namespace Case.Itau.Api.Configurations
             #endregion
 
             #region {Business}
-
+            services.AddScoped<IFundosServices, FundosServices>();
             #endregion
 
             #region {Data}
             services.AddScoped<IRepositoryValidation, RepositoryValidation>();
+            services.AddScoped<IFundosDao, FundosDao>();
             #endregion
         }
     }

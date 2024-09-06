@@ -1,5 +1,6 @@
 using Case.Itau.Api.Configurations;
-using Case.Itau.Api.Util.Health;
+using Case.Itau.Business.Util.Health;
+using Case.Itau.Business.Util.Health;
 
 var builder = WebApplication.CreateBuilder(args);
 

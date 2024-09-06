@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Serilog;
 
-namespace Case.Itau.Api.Util.Health
+
+namespace Case.Itau.Business.Util.Health
 {
     public class CustomHealthCheck : IHealthCheck
     {
@@ -16,7 +17,7 @@ namespace Case.Itau.Api.Util.Health
             {
                 return await _callHealthCheck.Validar();
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 Log.Error(e, "Erro na validacao do Health");
                 return new HealthCheckResult(HealthStatus.Unhealthy);

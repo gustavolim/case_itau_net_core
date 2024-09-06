@@ -1,4 +1,4 @@
-﻿namespace Case.Itau.Api.Util.Health
+﻿namespace Case.Itau.Business.Util.Health
 {
     public class Dependency
     {

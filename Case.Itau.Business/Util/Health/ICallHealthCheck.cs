@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Case.Itau.Api.Util.Health
+namespace Case.Itau.Business.Util.Health
 {
     public interface ICallHealthCheck
     {
