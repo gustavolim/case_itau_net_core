@@ -1,6 +1,5 @@
 using Case.Itau.Api.Configurations;
 using Case.Itau.Business.Util.Health;
-using Case.Itau.Business.Util.Health;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region [Configure Services]
 
-builder.Services.AddControllers();
+builder.Services.AddControllersConfiguration();
+
+builder.Services.AddAuthenticationJwt();
 
 builder.Services.AddSwaggerConfiguration();
 
@@ -19,6 +20,8 @@ builder.Services.AddAutoMapper();
 builder.Services.RegisterServices(builder.Configuration);
 
 builder.Services.AddHelthCheckConfiguration(builder.Configuration);
+
+builder.Services.Addhsts();
 
 builder.Services.AddRouting(opt => opt.LowercaseUrls = true);
 #endregion
@@ -43,6 +46,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();

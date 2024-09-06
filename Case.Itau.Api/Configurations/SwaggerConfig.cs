@@ -15,6 +15,33 @@ namespace Case.Itau.Api.Configurations
                 s.OperationFilter<SwaggerDefaultValues>();
                 s.UseAllOfToExtendReferenceSchemas();
 
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "bearer",
+                    //BearerFormat = "JWT"
+                });
+
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Name = "Authorization",
+                            In = ParameterLocation.Header
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+
                 s.SwaggerDoc("v1.WeatherForecast", new OpenApiInfo
                 {
                     Title = "API teste",
@@ -31,7 +58,7 @@ namespace Case.Itau.Api.Configurations
                 {
                     Title = "API Case Itau",
                     Version = "v1",
-                    Description = "Description",
+                    Description = "API deticada para CRUD de fundos",
                     Contact = new OpenApiContact
                     {
                         Email = "delimaalves.gustavo@gmail.com",
@@ -39,6 +66,17 @@ namespace Case.Itau.Api.Configurations
                     }
                 });
 
+                s.SwaggerDoc("v1.Login", new OpenApiInfo
+                {
+                    Title = "API Case Itau",
+                    Version = "v1",
+                    Description = "Retorna token",
+                    Contact = new OpenApiContact
+                    {
+                        Email = "delimaalves.gustavo@gmail.com",
+                        Name = "Gustavo de Lima Alves"
+                    }
+                });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -52,7 +90,7 @@ namespace Case.Itau.Api.Configurations
 
             app.UseSwagger(c =>
             {
-                c.RouteTemplate = "doc/{documentName}/swagger.json"; 
+                c.RouteTemplate = "doc/{documentName}/swagger.json";
                 c.SerializeAsV2 = true;
             });
 
@@ -61,6 +99,8 @@ namespace Case.Itau.Api.Configurations
                 c.RoutePrefix = "doc";
                 c.SwaggerEndpoint("./v1.WeatherForecast/swagger.json", "WeatherForecast");
                 c.SwaggerEndpoint("./v1.Fundos/swagger.json", "Fundos");
+                c.SwaggerEndpoint("./v1.Login/swagger.json", "Gera Token");
+
             });
         }
     }
