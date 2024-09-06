@@ -8,6 +8,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Case.Itau.Data.Dtos;
+using Case.Itau.Data.Mappings;
 
 namespace Case.Itau.Business.Services.V1.Fundos
 {
@@ -16,19 +18,53 @@ namespace Case.Itau.Business.Services.V1.Fundos
         private readonly IFundosDao _fundosDao = fundosDao;
         private readonly IMapper _mapper = mapper;
 
-        public Task Alterar(FundoModel fundoDto)
+        public async Task Alterar(FundoModel fundoDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fundoMap = _mapper.Map<FundosDtoMap>(fundoDto);
+
+                await _fundosDao.Alterar(fundoMap);
+            }
+            catch (Exception e)
+            {
+                throw new HttpException(HttpStatusCode.InternalServerError, $"{e.Message}");
+            }
         }
 
-        public Task Deletar(FundoModel fundoDto)
+        public async Task Deletar(string codigo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _fundosDao.Deletar(x=> x.Codigo == codigo);
+            }
+            catch (Exception e)
+            {
+                throw new HttpException(HttpStatusCode.InternalServerError, $"{e.Message}");
+            }
         }
 
-        public Task Inserir(FundoModel fundoDto)
+        public async Task Inserir(FundoModel fundoDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fundoMap = _mapper.Map<FundosDtoMap>(fundoDto);
+
+                await _fundosDao.Inserir(fundoMap);
+            }
+            catch (Exception e)
+            {
+                throw new HttpException(HttpStatusCode.InternalServerError, $"{e.Message}");
+            }
+        }
+
+        public async Task<FundosResult> ObterFundo(string codigo)
+        {
+            var fundo = await _fundosDao.ObterFundo(x => x.Codigo == codigo);
+            if (fundo is not object || fundo == null)
+                throw new HttpException(HttpStatusCode.NoContent, "Nao Existe Fundos");
+
+            return _mapper.Map<FundosResult>(fundo);
         }
 
         public async Task<List<FundosResult>> ObterFundos()

@@ -9,6 +9,5 @@ namespace Case.Itau.Business.Models.V1
         public string CNPJ { get; set; }
         public int CodigoTipo { get; set; }
         public decimal Patrimonio { get; set; }
-        public TipoFundoModel TipoFundo { get; set; }
     }
 }

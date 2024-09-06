@@ -15,18 +15,19 @@ namespace Case.Itau.Business.AutoMapper.V1
         public FundosMappingProfile()
         {
             CreateMap<FundosDtoMap, FundosResult>()
+                .ForMember(x => x.Codigo, o => o.MapFrom(src => src.Codigo))
                 .ForMember(x => x.Nome, o => o.MapFrom(src => src.Nome))
                 .ForMember(x => x.CNPJ, o => o.MapFrom(src => src.CNPJ))
                 .ForMember(x => x.Patrimonio, o => o.MapFrom(src => src.Patrimonio))
-                .ForMember(x => x.TipoFundo, o => o.MapFrom(src => src.TipoFundo));
+                .ForMember(x => x.TipoFundo, o => o.MapFrom(src => src.TipoFundo))
+                .ForMember(x => x.CodigoTipo, o => o.MapFrom(src => src.CodigoTipo));
 
             CreateMap<FundosDtoMap, FundoModel>()
                 .ForMember(x => x.Codigo, o => o.MapFrom(src => src.Codigo))
                 .ForMember(x => x.Nome, o => o.MapFrom(src => src.Nome))
                 .ForMember(x => x.CNPJ, o => o.MapFrom(src => src.CNPJ))
                 .ForMember(x => x.CodigoTipo, o => o.MapFrom(src => src.CodigoTipo))
-                .ForMember(x => x.Patrimonio, o => o.MapFrom(src => src.Patrimonio))
-                .ForMember(x => x.TipoFundo, o => o.MapFrom(src => src.TipoFundo));
+                .ForMember(x => x.Patrimonio, o => o.MapFrom(src => src.Patrimonio)).ReverseMap();
 
             CreateMap<TipoFundosDtoMap, TipoFundoResult>();
         }

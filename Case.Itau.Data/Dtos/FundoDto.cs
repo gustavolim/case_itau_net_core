@@ -5,10 +5,10 @@ namespace Case.Itau.Data.Dtos
     [Table(Name = "FUNDO")]
     public class FundoDto
     {
-        [PrimaryKey, Identity, Column(Name = "CODIGO"), NotNull]
+        [Column(Name = "CODIGO"), NotNull]
         public string Codigo { get; set; }
+        
         [Column(Name = "NOME"), NotNull]
-
         public string Nome { get; set; }
 
         [Column(Name = "CNPJ"), NotNull]

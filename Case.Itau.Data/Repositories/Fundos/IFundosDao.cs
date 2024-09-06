@@ -9,8 +9,9 @@ namespace Case.Itau.Data.Repositories.Fundos
     public interface IFundosDao
     {
         Task<List<FundosDtoMap>> ObterFundos(Expression<Func<FundosDtoMap, bool>> predicate);
-        Task Inserir(FundoDto fundoDto);
-        Task Alterar(FundoDto fundoDto);
-        Task Deletar(FundoDto fundoDto);
+        Task<FundosDtoMap> ObterFundo(Expression<Func<FundosDtoMap, bool>> predicate);
+        Task Inserir(FundosDtoMap fundoDto);
+        Task Alterar(FundosDtoMap fundoDto);
+        Task Deletar(Expression<Func<FundosDtoMap, bool>> predicate);
     }
 }
