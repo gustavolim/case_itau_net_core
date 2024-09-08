@@ -32,6 +32,7 @@ namespace Case.Itau.Api.Controllers.V1.Fundos
 
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FundoModel))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> InserirFundo([FromBody] FundoModel fundoModel)
         {
             await fundosServices.Inserir(fundoModel);

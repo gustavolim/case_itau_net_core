@@ -1,4 +1,5 @@
 using Case.Itau.Api.Configurations;
+using Case.Itau.Api.Middlewares;
 using Case.Itau.Business.Util.Health;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,6 +51,9 @@ if (app.Environment.IsDevelopment())
     LinqToDB.Data.DataConnection.TurnTraceSwitchOn();
     LinqToDB.Data.DataConnection.WriteTraceLine = (message, displayName, traceLevel) => { Console.WriteLine($"{message} {displayName}"); };
 }
+
+// Middleware de validação deve estar antes de UseRouting()
+app.UseMiddleware<ValidationMiddleware>();
 
 app.UseHttpsRedirection();
 
