@@ -24,15 +24,21 @@ builder.Services.AddHelthCheckConfiguration(builder.Configuration);
 builder.Services.Addhsts();
 
 builder.Services.AddRouting(opt => opt.LowercaseUrls = true);
+
+// Adicionando configuração CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200") // Permite o domínio do Angular
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 #endregion
-
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-
-#region [App Services]
 
 
 var app = builder.Build();
@@ -46,17 +52,19 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
+
 app.UseRouting();
+
+// Use o middleware de CORS
+app.UseCors("AllowSpecificOrigins");
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.UseSwaggerSetup();
 
 app.UseHealthCheck();
 app.UseHealthCheckSetup();
+
 app.Run();
-
-#endregion
-
-
-
