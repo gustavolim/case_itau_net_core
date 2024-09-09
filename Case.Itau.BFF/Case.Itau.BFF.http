@@ -1,0 +1,6 @@
+@Case.Itau.BFF_HostAddress = http://localhost:5249
+
+GET {{Case.Itau.BFF_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

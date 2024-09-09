@@ -97,8 +97,8 @@ namespace Case.Itau.Api.Configurations
             app.UseSwaggerUI(c =>
             {
                 c.RoutePrefix = "doc";
-                c.SwaggerEndpoint("./v1.WeatherForecast/swagger.json", "WeatherForecast");
                 c.SwaggerEndpoint("./v1.Fundos/swagger.json", "Fundos");
+                c.SwaggerEndpoint("./v1.WeatherForecast/swagger.json", "WeatherForecast");
                 c.SwaggerEndpoint("./v1.Login/swagger.json", "Gera Token");
 
             });
